@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+  <style>
+    .bg{fill:#fff}.box{fill:#fffde0;stroke:#111;stroke-width:2}.head{fill:#fff9bf;stroke:#111;stroke-width:2}.sep{stroke:#111;stroke-width:1.5}.name{font:bold 21px Arial,sans-serif;fill:#111}.attr{font:16px Arial,sans-serif;fill:#111}.op{font:16px Arial,sans-serif;fill:#111}.rel{fill:none;stroke:#111;stroke-width:2}.card{font:17px Arial,sans-serif;fill:#111}.role{font:16px Arial,sans-serif;fill:#111}
+  </style>
+  <rect class="bg" width="1600" height="1050"/>
+
+  <!-- Classe sem associação persistida nesta versão -->
+  <g transform="translate(135 115)">
+    <rect class="box" width="360" height="215"/>
+    <rect class="head" width="360" height="42"/>
+    <text class="name" x="137" y="28">Usuario</text>
+    <line class="sep" x1="0" y1="178" x2="360" y2="178"/>
+    <text class="attr" x="18" y="74">− id : UUID</text><text class="attr" x="18" y="102">− empresa : string</text><text class="attr" x="18" y="130">− email : string</text><text class="attr" x="18" y="158">− senha_hash : string</text>
+  </g>
+
+  <!-- Catálogo e gestão de serviços -->
+  <g transform="translate(945 105)">
+    <rect class="box" width="525" height="465"/>
+    <rect class="head" width="525" height="42"/>
+    <text class="name" x="215" y="28">Servico</text>
+    <line class="sep" x1="0" y1="278" x2="525" y2="278"/>
+    <text class="attr" x="18" y="72">− id : UUID</text><text class="attr" x="18" y="98">− nome : string</text><text class="attr" x="18" y="124">− descricao : string</text><text class="attr" x="18" y="150">− categoria : string</text><text class="attr" x="18" y="176">− icone : string</text><text class="attr" x="18" y="202">− status : string</text><text class="attr" x="18" y="228">− criado_em : datetime</text><text class="attr" x="18" y="254">− atualizado_em : datetime</text><text class="attr" x="18" y="272">− excluido_em : datetime [0..1]</text>
+    <text class="op" x="18" y="310">+ listarPublicos() : List&lt;Servico&gt;</text><text class="op" x="18" y="336">+ obter(id : UUID) : Servico</text><text class="op" x="18" y="362">+ cadastrar(dados) : Servico</text><text class="op" x="18" y="388">+ atualizar(id : UUID, dados) : Servico</text><text class="op" x="18" y="414">+ restaurar(id : UUID) : Servico</text><text class="op" x="18" y="440">+ excluir(id : UUID, permanente : boolean) : void</text>
+  </g>
+
+  <!-- Solicitação de orçamento -->
+  <g transform="translate(205 505)">
+    <rect class="box" width="570" height="470"/>
+    <rect class="head" width="570" height="42"/>
+    <text class="name" x="220" y="28">Orcamento</text>
+    <line class="sep" x1="0" y1="294" x2="570" y2="294"/>
+    <text class="attr" x="18" y="72">− id : UUID</text><text class="attr" x="18" y="98">− cliente : string</text><text class="attr" x="18" y="124">− empresa : string</text><text class="attr" x="18" y="150">− email : string</text><text class="attr" x="18" y="176">− telefone : string</text><text class="attr" x="18" y="202">− servico_id : UUID</text><text class="attr" x="18" y="228">− servico_nome : string</text><text class="attr" x="18" y="254">− descricao : string</text><text class="attr" x="18" y="280">− cidade : string</text><text class="attr" x="300" y="72">− status : string</text><text class="attr" x="300" y="98">− criado_em : datetime</text>
+    <text class="op" x="18" y="326">+ solicitar(dados) : Orcamento</text><text class="op" x="18" y="352">+ listar() : List&lt;Orcamento&gt;</text><text class="op" x="18" y="378">+ obter(id : UUID) : Orcamento</text><text class="op" x="18" y="404">+ atualizarStatus(id : UUID, status) : Orcamento</text><text class="op" x="18" y="430">+ baixarAnexo(id : UUID) : bytes</text><text class="op" x="18" y="456">+ excluir(id : UUID) : void</text>
+  </g>
+
+  <!-- Anexo opcional -->
+  <g transform="translate(1050 640)">
+    <rect class="box" width="400" height="285"/>
+    <rect class="head" width="400" height="42"/>
+    <text class="name" x="106" y="28">OrcamentoAnexo</text>
+    <line class="sep" x1="0" y1="245" x2="400" y2="245"/>
+    <text class="attr" x="18" y="72">− id : UUID</text><text class="attr" x="18" y="100">− orcamento_id : UUID</text><text class="attr" x="18" y="128">− nome : string</text><text class="attr" x="18" y="156">− tipo : string</text><text class="attr" x="18" y="184">− tamanho : int</text><text class="attr" x="18" y="212">− conteudo : bytes</text><text class="attr" x="18" y="238">− criado_em : datetime</text>
+  </g>
+
+  <!-- associações do domínio persistido -->
+  <path class="rel" d="M1207 570V600H775"/>
+  <text class="role" x="890" y="588">referencia</text><text class="card" x="1217" y="590">1</text><text class="card" x="745" y="589">0..*</text>
+  <path class="rel" d="M775 730H1050"/>
+  <path d="M795 730l-20 -10 -20 10 20 10z" fill="#111"/>
+  <text class="role" x="877" y="719">possui</text><text class="card" x="811" y="719">1</text><text class="card" x="1005" y="719">0..1</text>
+</svg>
