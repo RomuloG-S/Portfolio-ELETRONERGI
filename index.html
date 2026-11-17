@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio ELETRONERGI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: técnico, sóbrio, de engenharia — um projeto entregue com rigor.
+   IDEA: uma prancha técnica de projeto elétrico: cada seção é uma "folha", com carimbo no fim.
+   PICTURE: esquema unifilar da arquitetura no topo; diagramas e telas reais embutidos em cada folha.
+   COLOUR and TYPE: grafite profundo, papel claro, cobre de fio elétrico como acento; Barlow Semi Condensed + Barlow.
+   LAYOUT: banner com o esquema; folhas numeradas; diagramas em pranchas grandes; carrossel de telas; carimbo final. */
+:root{color-scheme:light dark;
+--bg:light-dark(#f4f2ee,#14171b);--panel:light-dark(#ffffff,#1c2026);--ink:light-dark(#1b1f24,#e9e6e0);
+--mute:light-dark(#5b626b,#a3a9b0);--line:light-dark(#d6d2ca,#2f353d);--band:light-dark(#1d232b,#0c0f12);
+--bandink:#eef0f2;--cu:light-dark(#b0521f,#e0864f);--cuSoft:light-dark(#f6e4d8,#3a2518);
+--ok:light-dark(#1e7a4c,#5fcf95);--okSoft:light-dark(#dff1e7,#16342a);--wip:light-dark(#9a6a00,#f0c35a);--wipSoft:light-dark(#fbefcf,#3a3014);
+--plan:light-dark(#4b5563,#b6bdc6);--planSoft:light-dark(#eceae6,#262b31)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.6 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Barlow Semi Condensed",Barlow,sans-serif;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(40px,6.4vw,68px);letter-spacing:-.01em}
+h2{font-size:clamp(30px,3.6vw,42px)}
+h3{font-size:22px}
+p{margin:.6em 0;max-width:70ch}
+a{color:var(--cu)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+nav.top{position:sticky;top:0;z-index:5;background:var(--band);color:var(--bandink);border-bottom:2px solid var(--cu)}
+nav.top .wrap{display:flex;gap:4px 18px;align-items:center;padding:10px max(5vw,16px);flex-wrap:wrap}
+nav.top b{font-family:"Barlow Semi Condensed";font-size:20px;letter-spacing:.04em;margin-right:auto;display:flex;gap:8px;align-items:center}
+nav.top a{color:var(--bandink);text-decoration:none;font-size:15px;padding:8px 2px;opacity:.85}
+nav.top a:hover,nav.top a:focus-visible{opacity:1;color:#f0a674}
+@media(max-width:900px){nav.top{position:static}nav.top .links{display:flex;gap:4px 14px;overflow-x:auto;width:100%}nav.top a{flex:none}}
+header.hero{background:var(--band);color:var(--bandink)}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
+@media(max-width:860px){.hero .grid{grid-template-columns:minmax(0,1fr)}}
+.hero p{color:#c9ced4;font-size:18px}
+.hero .lede{color:#fff;font-size:20px}
+.kicker{font-size:15px;color:#f0a674;font-weight:600;margin-bottom:12px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.facts span{border:1px solid #3c444e;border-radius:4px;padding:6px 12px;font-size:15px;color:#dfe3e7}
+.schem{background:#10151a;border:1px solid #2d343c;border-radius:6px;padding:12px}
+.schem svg{display:block;width:100%;height:auto}
+.sheet{border-top:1px solid var(--line)}
+.sheet-head{display:flex;align-items:baseline;gap:16px;margin-bottom:10px;flex-wrap:wrap}
+.sheet-head .no{font-family:"Barlow Semi Condensed",Barlow,sans-serif;font-size:17px;color:var(--cu);border:1.5px solid var(--cu);border-radius:4px;padding:2px 10px;white-space:nowrap}
+.sub{color:var(--mute);margin:0 0 22px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.card h3{margin-bottom:6px;display:flex;gap:10px;align-items:baseline}
+.card h3 i{font-style:normal;color:var(--cu);font-size:17px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tags span{background:var(--cuSoft);color:var(--ink);border-radius:4px;padding:4px 10px;font-size:14.5px;font-weight:500}
+ul.tight{margin:.4em 0;padding-left:1.2em}ul.tight li{margin:.25em 0}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:"Barlow Semi Condensed",Barlow,sans-serif;font-size:16px;background:var(--planSoft)}
+tr:last-child td{border-bottom:0}
+td.date{white-space:nowrap;font-variant-numeric:tabular-nums}
+.uc{font-weight:600}
+.st{display:inline-block;border-radius:999px;padding:3px 11px;font-size:14px;font-weight:600;white-space:nowrap}
+.st.ok{background:var(--okSoft);color:var(--ok)}.st.wip{background:var(--wipSoft);color:var(--wip)}.st.plan{background:var(--planSoft);color:var(--plan)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 0;color:var(--mute);font-size:15px}
+/* pranchas de diagrama */
+.dg{margin:34px 0 0}
+.dg-h{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:10px}
+.dg-h .n{font:700 15px "Barlow Semi Condensed";color:#fff;background:var(--cu);border-radius:3px;padding:2px 8px}
+.dg-h a{margin-left:auto;font-size:15px;font-weight:600}
+.dg p{margin-top:0}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+figure .img{display:block;position:relative;background:#fff;border-bottom:1px solid var(--line)}
+figure img{display:block;width:100%;height:auto;max-height:820px;object-fit:contain;background:#fff}
+figure .fb{display:none;place-items:center;text-align:center;min-height:240px;padding:16px;color:var(--mute);text-decoration:none;background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--line) 45%,transparent) 14px 15px)}
+figure .fb span{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:10px 14px;color:var(--cu);font-weight:600}
+figure.broken .fb{display:grid}figure.broken img{display:none}
+figcaption{padding:10px 16px 12px;font-size:15px;color:var(--mute)}
+figcaption b{color:var(--ink)}
+/* carrossel de telas */
+.car{position:relative}
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin}
+.track figure{flex:0 0 100%;scroll-snap-align:start}
+.track figure img{aspect-ratio:16/9;object-fit:cover;object-position:top;max-height:none}
+.car .ctl{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:14px}
+.car button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--cu);background:var(--panel);color:var(--cu);font-size:20px;cursor:pointer}
+.car button:focus-visible{outline:3px solid var(--cu);outline-offset:2px}
+.count{min-width:70px;text-align:center;font-variant-numeric:tabular-nums;color:var(--mute)}
+.thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:12px;padding-bottom:4px}
+.thumbs button{flex:none;width:auto;height:auto;border-radius:4px;padding:6px 12px;font-size:14px;border:1px solid var(--line);color:var(--ink)}
+.thumbs button[aria-current=true]{border-color:var(--cu);background:var(--cuSoft)}
+/* vídeo */
+.video{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:center}
+@media(max-width:760px){.video{grid-template-columns:minmax(0,1fr)}}
+.vbox{aspect-ratio:16/9;background:var(--band);border-radius:6px;overflow:hidden;display:grid;place-items:center;color:#cfd4da;border:1px solid var(--line)}
+.vbox video,.vbox iframe{width:100%;height:100%;border:0;display:block}
+.play{width:72px;height:72px;border-radius:50%;border:2px solid #f0a674;display:grid;place-items:center;margin:0 auto 12px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:4px;background:var(--cu);color:#fff;text-decoration:none;font-weight:600}
+.btn.ghost{background:transparent;color:var(--cu);border:1.5px solid var(--cu)}
+.doclist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:12px}
+.doc{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;text-decoration:none;color:var(--ink);min-height:44px}
+.doc:hover,.doc:focus-visible{border-color:var(--cu);outline:none}
+.doc .ic{flex:none;width:38px;height:38px;border-radius:4px;background:var(--cuSoft);color:var(--cu);display:grid;place-items:center;font:700 13px "Barlow Semi Condensed"}
+.doc b{display:block;font-weight:600}
+.doc small{color:var(--mute);font-size:14px}
+.report{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:center}
+@media(max-width:760px){.report{grid-template-columns:minmax(0,1fr)}}
+.paper{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:26px 24px;box-shadow:8px 8px 0 var(--cuSoft);max-width:330px}
+.paper .t{font:700 15px "Barlow Semi Condensed";color:var(--mute)}
+.paper .n{font:700 26px/1.1 "Barlow Semi Condensed";margin:14px 0 6px}
+.paper hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+.stamp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:2px solid var(--ink);background:var(--panel)}
+.stamp div{padding:12px 14px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.stamp div:nth-child(4n){border-right:0}
+.stamp .w2{grid-column:span 2}
+.stamp small{display:block;color:var(--mute);font-size:13px}
+.stamp b{font-size:17px}
+.stamp .last{border-bottom:0}
+@media(max-width:700px){.stamp{grid-template-columns:minmax(0,1fr)}.stamp div,.stamp .w2{grid-column:auto;border-right:0}.stamp .last{border-bottom:1px solid var(--ink)}.stamp div:last-child{border-bottom:0}}
+footer{color:var(--mute);font-size:14px;text-align:center;padding:26px 16px 40px}
+.scroll{overflow-x:auto}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 12px;padding-inline-start:8.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-size:13px}.stack td:empty{display:none}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+
+<nav class="top"><div class="wrap"><b><svg width="18" height="22" viewBox="0 0 18 22" aria-hidden="true"><path d="M11 0L0 13h7l-2 9L18 8h-7z" fill="#e0864f"/></svg>ELETRONERGI</b><div class="links">
+<a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#casos-de-uso">Casos de uso</a><a href="#documentacao">Diagramas</a><a href="#telas">Telas</a><a href="#video">Vídeo</a><a href="#relatorio">Relatório</a><a href="#aluno">Aluno</a>
+</div></div></nav>
+
+<!-- 1. PÁGINA INICIAL -->
+<header class="hero band" id="inicio">
+<div class="wrap grid">
+<div>
+<div class="kicker">Portfólio do Projeto de Estágio · Engenharia de Software · 2026</div>
+<h1>ELETRONERGI</h1>
+<p class="lede">Plataforma web que dá presença digital a uma empresa de serviços elétricos e organiza o pedido de orçamento, do formulário do cliente ao painel do gestor.</p>
+<p><strong style="color:#fff">Objetivo do sistema:</strong> ampliar a visibilidade e a confiabilidade da ELETRONERGI, oferecendo aos potenciais clientes um ambiente digital para conhecer os serviços, ver o portfólio de projetos e solicitar orçamentos de forma organizada — e ao gestor, um painel para cadastrar serviços e tratar as solicitações recebidas.</p>
+<p>A ELETRONERGI é uma empresa recente de Jaguapitã/PR que presta serviços elétricos (projetos, instalações, painéis, automação, SPDA e manutenção) para empresas de pequeno e médio porte. O projeto é desenvolvido no estágio obrigatório, com documentação baseada no RUP e modelagem UML.</p>
+<div class="facts"><span>React + TypeScript</span><span>FastAPI (Python)</span><span>PostgreSQL</span><span>JWT</span><span>Estágio: 14/05/2026 – 14/05/2027</span></div>
+</div>
+<div class="schem" aria-label="Esquema da arquitetura do sistema">
+<svg viewBox="0 0 560 330" role="img" font-family="Barlow, sans-serif">
+<defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#1d252d" stroke-width="1"/></pattern></defs>
+<rect width="560" height="330" fill="url(#g)"/>
+<g stroke="#e0864f" stroke-width="3" fill="none"><path d="M98 165H168"/><path d="M262 165H312"/><path d="M406 165H446"/><path d="M359 118V70H215V118"/></g>
+<g fill="#e0864f"><circle cx="98" cy="165" r="5"/><circle cx="168" cy="165" r="5"/><circle cx="312" cy="165" r="5"/><circle cx="446" cy="165" r="5"/></g>
+<g fill="#161c22" stroke="#c9ced4" stroke-width="2"><rect x="18" y="122" width="80" height="86" rx="6"/><rect x="168" y="118" width="94" height="94" rx="4"/><rect x="312" y="118" width="94" height="94" rx="4"/></g>
+<rect x="30" y="134" width="56" height="40" rx="2" fill="#24303b"/><rect x="48" y="182" width="20" height="14" fill="#c9ced4"/>
+<path d="M199 150l16 15-16 15M231 150l-16 15 16 15" stroke="#7fc8f8" stroke-width="3" fill="none"/>
+<path d="M340 148h40l-10 18h14l-30 30 8-22h-14z" fill="#f0c35a"/>
+<g transform="translate(446,118)"><ellipse cx="46" cy="12" rx="44" ry="12" fill="#161c22" stroke="#c9ced4" stroke-width="2"/><path d="M2 12v70c0 7 20 12 44 12s44-5 44-12V12" fill="#161c22" stroke="#c9ced4" stroke-width="2"/><path d="M2 40c0 7 20 12 44 12s44-5 44-12M2 64c0 7 20 12 44 12s44-5 44-12" fill="none" stroke="#3a4651" stroke-width="2"/></g>
+<g fill="#eef0f2" font-size="15" font-weight="600" text-anchor="middle"><text x="58" y="234">Navegador</text><text x="215" y="236">React + TS</text><text x="359" y="236">FastAPI</text><text x="492" y="236">PostgreSQL</text></g>
+<g fill="#a3a9b0" font-size="13" text-anchor="middle"><text x="133" y="154">HTTPS</text><text x="287" y="154">REST</text><text x="426" y="154">TCP/IP</text><text x="287" y="62">JSON · token JWT</text>
+<text x="215" y="254">interface</text><text x="359" y="254">regras e API</text><text x="492" y="254">persistência</text></g>
+<g fill="#6c7782" font-size="12"><text x="18" y="312">ESQUEMA DA SOLUÇÃO · SERVIDOR: FRONTEND + API · BANCO RELACIONAL</text></g>
+</svg>
+</div>
+</div>
+</header>
+
+<!-- 2. SOBRE O PROJETO -->
+<section class="band sheet" id="sobre"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 02</span><h2>Sobre o projeto</h2></div>
+<p class="sub">Problema, tecnologias e arquitetura da solução.</p>
+<div class="cols">
+<div class="card"><h3><i>01</i>Problema</h3>
+<p>Como empresa nova, a ELETRONERGI tem <strong>baixa visibilidade digital e dificuldade de gerar confiança</strong> em novos clientes. Sem um canal estruturado, depende de redes sociais e contato informal: as informações institucionais ficam dispersas, o primeiro contato comercial não é organizado e a captação de clientes perde competitividade.</p>
+<p>O processo atual (AS-IS) é manual: o cliente pesquisa, entra em contato, a empresa registra e analisa o pedido, às vezes faz visita técnica e só então elabora e envia a proposta.</p></div>
+<div class="card"><h3><i>02</i>Tecnologias utilizadas</h3>
+<div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>HTML5 / CSS</span><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span><span>PostgreSQL</span><span>JWT</span><span>Git / GitHub</span><span>Astah (UML)</span><span>Bizagi (BPMN)</span></div>
+<ul class="tight" style="margin-top:14px">
+<li><b>Frontend:</b> React com TypeScript, componentes reutilizáveis e layout responsivo em Tailwind CSS.</li>
+<li><b>Backend:</b> FastAPI para rotas, validação e regras de negócio; SQLAlchemy para acesso ao banco e Alembic para migrações.</li>
+<li><b>Segurança:</b> login com e-mail e senha; a API emite um token JWT validado nas rotas administrativas.</li>
+</ul></div>
+<div class="card"><h3><i>03</i>Arquitetura da solução</h3>
+<p>Arquitetura em três camadas, separando interface, processamento e persistência:</p>
+<ul class="tight">
+<li>O cliente acessa pelo <b>navegador</b>, comunicando-se com o servidor via <b>HTTPS</b>.</li>
+<li>No servidor ficam o <b>frontend em React</b> e a <b>API em FastAPI</b>, que concentra as regras de negócio.</li>
+<li>A API acessa o <b>PostgreSQL</b> por TCP/IP, armazenando serviços, orçamentos e anexos.</li>
+<li>Dois perfis: <b>Cliente</b> (site público e solicitação de orçamento) e <b>Gestor</b> (painel administrativo autenticado).</li>
+</ul></div>
+</div>
+</div></section>
+
+<!-- 3. CASOS DE USO E CRONOGRAMA -->
+<section class="band sheet" id="casos-de-uso"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 03</span><h2>Casos de uso e cronograma</h2></div>
+<p class="sub">Perfis Cliente e Gestor, seis casos de uso previstos.</p>
+<div id="dg-uc"></div>
+<h3 style="margin:34px 0 12px">Casos de uso previstos</h3>
+<table class="stack"><thead><tr><th>Caso de uso</th><th>Ator</th><th>Descrição</th></tr></thead><tbody id="ucT"></tbody></table>
+
+<h3 style="margin:34px 0 4px">Cronograma de desenvolvimento</h3>
+<p class="sub" style="margin-bottom:12px">Atualizado em 17/11/2026, refletindo o andamento real do projeto.</p>
+<div class="scroll"><table class="stack"><thead><tr><th>Caso de uso</th><th>Especificação</th><th>Modelagem</th><th>Implementação</th><th>Situação</th></tr></thead><tbody id="cronT"></tbody></table></div>
+<div class="legend"><span><span class="st ok">Concluído</span> data de conclusão</span><span><span class="st wip">Em andamento</span> previsão</span><span><span class="st plan">Previsto</span> previsão</span></div>
+
+<h3 style="margin:34px 0 12px">Marcos de documentação do bimestre</h3>
+<table class="stack"><thead><tr><th>Entrega</th><th>Data</th><th>Situação</th></tr></thead><tbody id="docT"></tbody></table>
+</div></section>
+
+<!-- 4. DOCUMENTAÇÃO / DIAGRAMAS -->
+<section class="band sheet" id="documentacao"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 04</span><h2>Documentação — diagramas</h2></div>
+<p class="sub">Clique em qualquer diagrama para abrir o arquivo original no Google Drive.</p>
+<div id="dgs"></div>
+<h3 style="margin:40px 0 12px">Documentos do projeto (RUP)</h3>
+<div class="doclist" id="docL"></div>
+<p style="margin-top:20px"><a class="btn ghost" href="https://drive.google.com/drive/folders/1oo7pDeegu0maqyCtOFz3G7qmd26Jsl68" target="_blank" rel="noopener">Abrir a pasta completa do projeto no Drive</a></p>
+</div></section>
+
+<!-- 5. TELAS -->
+<section class="band sheet" id="telas"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 05</span><h2>Telas do sistema</h2></div>
+<p class="sub">Área pública do site e painel administrativo do gestor.</p>
+<div class="car">
+<div class="track" id="track" tabindex="0" aria-label="Carrossel de telas"></div>
+<div class="ctl"><button type="button" id="prev" aria-label="Tela anterior">&#10094;</button><span class="count" id="count">1 / 1</span><button type="button" id="next" aria-label="Próxima tela">&#10095;</button></div>
+<div class="thumbs" id="thumbs"></div>
+</div>
+</div></section>
+
+<!-- 5b. VÍDEO -->
+<section class="band sheet" id="video"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 05b</span><h2>Demonstração em vídeo</h2></div>
+<p class="sub">Sistema em funcionamento, até 5 minutos.</p>
+<div class="video">
+<div class="vbox" id="vbox"><div style="text-align:center"><div class="play"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#f0a674"/></svg></div>Vídeo de demonstração</div></div>
+<div><h3>Roteiro da demonstração</h3>
+<ul class="tight"><li>Navegação pelo site: início, serviços, projetos, sobre e contato.</li><li>Envio de uma solicitação de orçamento com anexo.</li><li>Login do gestor na área restrita.</li><li>Visão geral do painel administrativo.</li><li>Cadastro, edição e inativação de serviços.</li></ul>
+<p><a class="btn" id="vbtn" href="#video" target="_blank" rel="noopener">Abrir vídeo em nova aba</a></p></div>
+</div>
+</div></section>
+
+<!-- 6. RELATÓRIO -->
+<section class="band sheet" id="relatorio"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 06</span><h2>Relatório de estágio</h2></div>
+<p class="sub">Versão atualizada até a data de entrega do portfólio.</p>
+<div class="report">
+<div class="paper"><div class="t">CURSO DE BACHARELADO EM ENGENHARIA DE SOFTWARE</div><div class="n">Relatório de Estágio — ELETRONERGI</div><div class="t">Rômulo Gusso Sobrinho<br>Londrina, 2026</div><hr><div class="t">PDF · versão atualizada</div></div>
+<div><p>O relatório reúne a introdução e a justificativa do projeto, todos os diagramas (caso de uso, ER, classes, sequência, estado e implantação), as telas desenvolvidas, o workflow AS-IS em BPMN, os recursos e o ambiente de desenvolvimento e o cronograma de entregas.</p>
+<p><a class="btn" href="https://drive.google.com/file/d/1FeaajWuGcFVLUy5HAOHmNHZoJAsvY8Fv/view" target="_blank" rel="noopener">Abrir o Relatório de Estágio (PDF)</a></p>
+<p style="color:var(--mute);margin-top:14px">Acompanhamento mensal (RPOD): <a href="https://drive.google.com/file/d/16YI8gS1lSONCZpws-xosR2zc8x_PO9Kc/view" target="_blank" rel="noopener">junho</a> · <a href="https://drive.google.com/file/d/1Sx6UfSF5C3iC2aqx1CDzleLE1p_N-Za3/view" target="_blank" rel="noopener">julho</a> · <a href="https://drive.google.com/file/d/1SWdSni2rVXjuFpQ6h5L58yz7gfqGeonY/view" target="_blank" rel="noopener">outubro</a> · <a href="https://drive.google.com/file/d/1v4N8FeIhFb93GdwHvsz-1WF8nq41TMHo/view" target="_blank" rel="noopener">novembro</a></p></div>
+</div>
+</div></section>
+
+<!-- 7. IDENTIFICAÇÃO -->
+<section class="band sheet" id="aluno"><div class="wrap">
+<div class="sheet-head"><span class="no">Folha 07</span><h2>Identificação do aluno</h2></div>
+<p class="sub">Carimbo do projeto.</p>
+<div class="stamp">
+<div class="w2"><small>Aluno</small><b>Rômulo Gusso Sobrinho</b></div>
+<div><small>Matrícula</small><b>242072016</b></div>
+<div><small>Período</small><b>3º ano</b></div>
+<div class="w2"><small>Professor orientador</small><b>Prof. Marcelo Yukio Yamamoto</b></div>
+<div class="w2"><small>Curso</small><b>Engenharia de Software — UniFil</b></div>
+<div class="w2 last"><small>Empresa concedente</small><b>Inacio Transportes LTDA · Jaguapitã/PR</b></div>
+<div class="last"><small>Projeto</small><b>ELETRONERGI</b></div>
+<div class="last"><small>Data</small><b>Nov/2026</b></div>
+</div>
+</div></section>
+
+<footer>Portfólio do Projeto de Estágio · ELETRONERGI · Rômulo Gusso Sobrinho · 2026</footer>
+
+<script>
+{
+/* ===== CONFIGURAÇÃO ===== */
+/* Link do vídeo: YouTube (watch, youtu.be ou shorts), Google Drive (/file/d/.../view) ou "assets/video.mp4" */
+const VIDEO="";
+
+const D=id=>`https://drive.google.com/file/d/${id}/view`;
+/* Cada imagem tenta: 1) arquivo em assets/ (mesmo nome do Drive)  2) miniatura do Drive  3) cartão com link para o Drive */
+const srcs=(local,id)=>[`assets/${encodeURIComponent(local)}`,`https://drive.google.com/thumbnail?id=${id}&sz=w2000`,`https://lh3.googleusercontent.com/d/${id}=w2000`];
+const fig=(local,id,alt,cap)=>`<figure><a class="img" href="${D(id)}" target="_blank" rel="noopener"><img alt="${alt}" data-s='${JSON.stringify(srcs(local,id))}'><span class="fb"><span>Abrir no Google Drive</span></span></a>${cap?`<figcaption>${cap}</figcaption>`:''}</figure>`;
+function wire(root){root.querySelectorAll('img[data-s]').forEach(im=>{const l=JSON.parse(im.dataset.s);let i=0;im.removeAttribute('data-s');im.loading='lazy';im.onerror=()=>{i++;if(i<l.length)im.src=l[i];else im.closest('figure').classList.add('broken')};im.src=l[0]})}
+
+/* ===== CASOS DE USO ===== */
+const UC_ID="1iUtXdk0dxz1gLcOnC-G9HWpJVyjH3KIh";
+document.getElementById('dg-uc').innerHTML=`<div class="dg-h"><span class="n">3.1</span><h3>Diagrama de Casos de Uso</h3><a href="${D(UC_ID)}" target="_blank" rel="noopener">Abrir no Drive ↗</a></div>`+fig("Caso de uso.png",UC_ID,'Diagrama de casos de uso','<b>Figura 1</b> — Atores Cliente e Gestor e os casos de uso do sistema.');
+const ucs=[
+["Solicitar orçamento","Cliente","Registra uma nova solicitação de orçamento: dados de contato, cidade, tipo de serviço, descrição do projeto e anexo opcional (PDF, JPG ou PNG até 10 MB)."],
+["Acompanhar orçamento","Cliente","Permite ao cliente consultar o andamento (Em análise, Aceito, Recusado) do orçamento ligado à sua solicitação."],
+["Gerenciar serviços","Gestor","Cadastra, edita, ativa/inativa, exclui e restaura os serviços exibidos no site."],
+["Analisar solicitações","Gestor","Avalia os pedidos enviados pelos clientes, consulta anexos e decide sobre o atendimento, atualizando o status."],
+["Emitir orçamento","Gestor","Elabora e envia a proposta ao cliente quando a análise da solicitação é favorável."],
+["Visualizar relatórios","Gestor","Mostra informações consolidadas (serviços ativos, orçamentos totais, pendentes e aprovados) para acompanhar o sistema."]];
+document.getElementById('ucT').innerHTML=ucs.map(u=>`<tr><td class="uc">${u[0]}</td><td>${u[1]}</td><td>${u[2]}</td></tr>`).join('');
+
+/* ===== CRONOGRAMA (ajuste as previsões ao seu plano real) ===== */
+const S={ok:'Concluído',wip:'Em andamento',plan:'Previsto'};
+const cron=[
+["Gerenciar serviços","19/08/2026","24/10/2026","07/11/2026","ok"],
+["Solicitar orçamento","19/08/2026","24/10/2026","31/10/2026","ok"],
+["Analisar solicitações","28/11/2026","05/12/2026","12/12/2026","wip"],
+["Visualizar relatórios","05/12/2026","12/12/2026","19/12/2026","wip"],
+["Emitir orçamento","Fev/2027","Mar/2027","Mar/2027","plan"],
+["Acompanhar orçamento","Mar/2027","Abr/2027","Abr/2027","plan"]];
+document.getElementById('cronT').innerHTML=cron.map(c=>`<tr><td class="uc">${c[0]}</td><td class="date">${c[1]}</td><td class="date">${c[2]}</td><td class="date">${c[3]}</td><td><span class="st ${c[4]}">${S[c[4]]}</span></td></tr>`).join('');
+const docs=[
+["Especificação dos casos de uso","10/10/2026","ok"],
+["Diagramas de Entidade-Relacionamento e de Classes","17/10/2026","ok"],
+["Diagramas de Estado, Sequência e Implantação","24/10/2026","ok"],
+["Relatório de Estágio","31/10/2026","ok"],
+["Documentos da Banca de Estágio I e Atestado de Qualificação","07/11/2026","ok"],
+["Portfólio do Projeto (este site)","17/11/2026","ok"]];
+document.getElementById('docT').innerHTML=docs.map(d=>`<tr><td>${d[0]}</td><td class="date">${d[1]}</td><td><span class="st ${d[2]}">${S[d[2]]}</span></td></tr>`).join('');
+
+/* ===== DIAGRAMAS (cada bloco: número, título, texto, imagens) ===== */
+const dgs=[
+["4.1","Diagrama de Entidade-Relacionamento","Estrutura lógica de persistência: <b>servicos</b> mantém o catálogo; <b>orcamentos</b> guarda os dados do solicitante e referencia o serviço escolhido; cada orçamento pode ter um anexo em <b>orcamento_anexos</b>; <b>usuarios</b> guarda os acessos.",
+ [["DER.png","1G0MIM8mZoLQCNohOXdtZaCQIKUIxubXQ","Diagrama ER",""]]],
+["4.2","Diagrama de Classes","Classes de domínio <b>Servico</b> (consultar, cadastrar, atualizar, restaurar, excluir), <b>Orcamento</b> (consultar, atualizar status, baixar anexo, excluir), <b>OrcamentoAnexo</b> e <b>Usuario</b>.",
+ [["diagrama de classe.png","1Z-Z4htWy-N7XXPcxspdgNTaYvXJUperl","Diagrama de classes",""]]],
+["4.3","Diagramas de Sequência","Troca de mensagens entre ator, interface, controladores e entidades nos dois casos de uso implementados.",
+ [["Diagrama de sequencia Gerenciar Serviços.png","1-Q1amV0eMuU0Qe2gJlSKNgLmFEsMB_Sj","Diagrama de sequência Gerenciar Serviços","<b>Gerenciar Serviços</b> — cadastro, consulta e manutenção pelo Gestor."],
+  ["Diagrama de sequencia Orçamento.png","17wmrzNqX6fGN63zoBWdIgOds3vI_Eaaw","Diagrama de sequência Solicitar Orçamento","<b>Solicitar Orçamento</b> — validação e registro da solicitação do Cliente."]]],
+["4.4","Diagramas de Estados","Ciclo de vida dos objetos: um serviço nasce <b>Ativo</b>, pode ir para <b>Inativo</b> e voltar, ou ser <b>Apagado</b>; uma solicitação entra <b>Em análise</b> e termina <b>Aceita</b> ou <b>Recusada</b>.",
+ [["diagrama de estado gerencia serviços.png","1KvOoBjcDygvNDWiuIAt5oC6z7vtsKYPK","Diagrama de estados do serviço","<b>Gerenciar Serviço</b> — Ativo ⇄ Inativo → Apagado."],
+  ["Diagrama de estado Orçamento.png","1aOmNV1HlcaBM7ZINHIQXQlzRU2-FyOEI","Diagrama de estados do orçamento","<b>Solicitar Orçamento</b> — Em análise → Aceito / Recusado."]]],
+["4.5","Diagrama de Implantação","Navegador do cliente → HTTPS → servidor com frontend React e API FastAPI → PostgreSQL por TCP/IP.",
+ [["diagrama de implantação.png","120gMyp_5YNJ8ChsTP1W6bJkeb6R2Q8P2","Diagrama de implantação",""]]],
+["4.6","Workflow AS-IS (BPMN)","Processo de atendimento antes do sistema: pedido do cliente, registro, análise, visita técnica quando necessária, envio da proposta, execução e pagamento.",
+ [["Workflow AS-IS.png","1tPDLaEhLCkVeoFOaLznV73FBZ2TUo0cz","Workflow AS-IS em BPMN",""]]]];
+document.getElementById('dgs').innerHTML=dgs.map(d=>`<div class="dg"><div class="dg-h"><span class="n">${d[0]}</span><h3>${d[1]}</h3>${d[3].length==1?`<a href="${D(d[3][0][1])}" target="_blank" rel="noopener">Abrir no Drive ↗</a>`:''}</div><p>${d[2]}</p><div class="${d[3].length>1?'pair':''}">${d[3].map(f=>fig(...f)).join('')}</div></div>`).join('');
+
+const card=(ab,t,s,id)=>`<a class="doc" href="${D(id)}" target="_blank" rel="noopener"><span class="ic">${ab}</span><span><b>${t}</b><small>${s}</small></span></a>`;
+const rup=[
+["VI","Documento de Visão","Problema, envolvidos e necessidades","1fxp1VXqo2hoxBuTMsVNXHBwHVCdrJlQB"],
+["ES","Especificação Suplementar","Requisitos não funcionais","1SWYfjoWRxMsq0e95zAX_yPMzvuU9bFVo"],
+["PI","Pedidos do Investidor","Levantamento com o cliente","1JITrXJrXHhX71oAD3POV5o6j8GXArD8Z"],
+["GL","Glossário","Termos e estereótipos UML","1LrCKfSij3ENZyHZrudUP6EPuAMJeKjHP"],
+["UC","Especificação — Solicitar Orçamento","Fluxo básico, alternativos e subfluxos","1QpUQv9sHqAlb-h8PlFV1sGwVdXBPoWo3"],
+["UC","Especificação — Gerenciar Serviços","Fluxo básico, alternativos e subfluxos","1yEUDEj-3WunJUq9V461s-yoSAjezL1AK"]];
+document.getElementById('docL').innerHTML=rup.map(d=>card(...d)).join('');
+
+/* ===== TELAS (carrossel) ===== */
+const telas=[
+["Início","Captura de Tela (1).png","1jkD6FJdjMPrmyMzyYaCIElZMgdg5MwFS","Apresentação da empresa, valores e atalhos para serviços, contato e orçamento."],
+["Serviços","Captura de Tela (2).png","176OS7znHCEig6yBZrHBe4doWykIC7gti","Catálogo: projetos elétricos, instalações, painéis, automação, SPDA e manutenção."],
+["Projetos","Captura de Tela (3).png","1tTQ7unjGmiodeetkOZVKfh4UYSFCUVWd","Portfólio de trabalhos em cartões, com cidade e acesso aos detalhes."],
+["Projetos — filtro","Captura de Tela (8).png","14UVW5JT0i2vKK1D2Hi-j5QzLyLHm9IJ8","Filtragem entre industriais, comerciais e automação."],
+["Sobre nós","Captura de Tela (6).png","18s23StHmEU-xcU0DUSxPNVf1XqVybMEm","Missão, visão, valores e chamada para falar com um especialista."],
+["Contato","Captura de Tela (9).png","1oHeAHumLIrX9-4dS3FpNYR-ziSEmLf_e","Canais da empresa e formulário com assunto e mensagem."],
+["Solicitar orçamento","Captura de Tela (10).png","1pt9aEfPoWRcHFKjoWi5AWU6f10gAVvdE","Formulário com dados do projeto, tipo de serviço, descrição e anexo."],
+["Login","Captura de Tela (11).png","1nN_ffG5PeeLRmfN5LFt8fUxNkKPH4_NP","Área restrita com e-mail e senha; acesso ao painel do gestor."],
+["Painel — visão geral","Captura de Tela (12).png","1tlNE7lmmzZ9gMR-CGNUMHOQXoYhM-aC4","Serviços ativos, orçamentos totais, pendentes, aprovados e solicitações recentes."],
+["Painel — serviços","Captura de Tela (13).png","1rIkqCH3uh7g4-jW8eClUEsDziMchXfed","Lista com busca, filtro Ativos/Inativos/Lixeira, edição e novo serviço."],
+["Tela 11","Captura de Tela (4).png","1nFQLsYlLyMhSDAAJEMZqodex2b1xqW_F","Outra tela do sistema."],
+["Tela 12","Captura de Tela (5).png","1CFjTeBqg0to3M9LhvAWb4wk4hYd30aS5","Outra tela do sistema."],
+["Tela 13","Captura de Tela (7).png","1kwao6L2FwSJqGt3dNn6hO-ZnAqLUhKEc","Outra tela do sistema."],
+["Tela 14","Captura de Tela (14).png","1WZMxlDROFPqI4VYDygHBhtCsIsXqx7xD","Outra tela do sistema."]];
+const tr=document.getElementById('track'),th=document.getElementById('thumbs'),ct=document.getElementById('count');
+tr.innerHTML=telas.map((t,i)=>fig(t[1],t[2],'Tela: '+t[0],`<b>${i+1}. ${t[0]}</b> — ${t[3]}`)).join('');
+th.innerHTML=telas.map((t,i)=>`<button type="button" data-i="${i}">${t[0]}</button>`).join('');
+let cur=0;
+const go=i=>{cur=(i+telas.length)%telas.length;tr.scrollTo({left:tr.children[cur].offsetLeft-tr.offsetLeft});};
+const mark=()=>{ct.textContent=`${cur+1} / ${telas.length}`;th.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-current',i===cur))};
+document.getElementById('prev').addEventListener('click',()=>go(cur-1));
+document.getElementById('next').addEventListener('click',()=>go(cur+1));
+th.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(+b.dataset.i)});
+tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+let tm;tr.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{const w=tr.clientWidth;cur=Math.round(tr.scrollLeft/(w+18));mark()},80)});
+mark();
+wire(document);
+
+/* ===== VÍDEO ===== */
+if(VIDEO){
+ const vb=document.getElementById('vbox');let html='';
+ const yt=VIDEO.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+ const dv=VIDEO.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+ if(yt)html=`<iframe src="https://www.youtube.com/embed/${yt[1]}" title="Vídeo de demonstração" allowfullscreen></iframe>`;
+ else if(dv)html=`<iframe src="https://drive.google.com/file/d/${dv[1]}/preview" title="Vídeo de demonstração" allow="autoplay" allowfullscreen></iframe>`;
+ else html=`<video controls preload="metadata" src="${VIDEO}">Seu navegador não suporta vídeo.</video>`;
+ vb.innerHTML=html;document.getElementById('vbtn').href=VIDEO;
+}else{document.getElementById('vbtn').style.display='none'}
+}
+</script>
+</body>
+</html>

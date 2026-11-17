@@ -1,0 +1,55 @@
+name: Baixar imagens do Drive
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  baixar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar poppler
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Baixar arquivos
+        shell: bash
+        run: |
+          set -u
+          cd assets
+          baixar() { # id nome
+            curl -sSL -o "$2" "https://drive.usercontent.google.com/download?id=$1&export=download&confirm=t"
+            echo "$2: $(file -b "$2" | cut -c1-40) ($(stat -c%s "$2") bytes)"
+          }
+          png() { baixar "$1" "$2"; }
+          pdf() { baixar "$1" tmp.pdf; pdftoppm -png -r 160 -singlefile tmp.pdf "${2%.png}" && rm tmp.pdf && echo "  -> $2"; }
+          png 1jkD6FJdjMPrmyMzyYaCIElZMgdg5MwFS "Captura de Tela (1).png"
+          png 176OS7znHCEig6yBZrHBe4doWykIC7gti "Captura de Tela (2).png"
+          png 1tTQ7unjGmiodeetkOZVKfh4UYSFCUVWd "Captura de Tela (3).png"
+          png 1nFQLsYlLyMhSDAAJEMZqodex2b1xqW_F "Captura de Tela (4).png"
+          png 1CFjTeBqg0to3M9LhvAWb4wk4hYd30aS5 "Captura de Tela (5).png"
+          png 18s23StHmEU-xcU0DUSxPNVf1XqVybMEm "Captura de Tela (6).png"
+          png 1kwao6L2FwSJqGt3dNn6hO-ZnAqLUhKEc "Captura de Tela (7).png"
+          png 14UVW5JT0i2vKK1D2Hi-j5QzLyLHm9IJ8 "Captura de Tela (8).png"
+          png 1oHeAHumLIrX9-4dS3FpNYR-ziSEmLf_e "Captura de Tela (9).png"
+          png 1pt9aEfPoWRcHFKjoWi5AWU6f10gAVvdE "Captura de Tela (10).png"
+          png 1nN_ffG5PeeLRmfN5LFt8fUxNkKPH4_NP "Captura de Tela (11).png"
+          png 1tlNE7lmmzZ9gMR-CGNUMHOQXoYhM-aC4 "Captura de Tela (12).png"
+          png 1rIkqCH3uh7g4-jW8eClUEsDziMchXfed "Captura de Tela (13).png"
+          png 1WZMxlDROFPqI4VYDygHBhtCsIsXqx7xD "Captura de Tela (14).png"
+          png 1iUtXdk0dxz1gLcOnC-G9HWpJVyjH3KIh "Caso de uso.png"
+          png 1G0MIM8mZoLQCNohOXdtZaCQIKUIxubXQ "DER.png"
+          png 1Z-Z4htWy-N7XXPcxspdgNTaYvXJUperl "diagrama de classe.png"
+          png 1KvOoBjcDygvNDWiuIAt5oC6z7vtsKYPK "diagrama de estado gerencia serviços.png"
+          png 120gMyp_5YNJ8ChsTP1W6bJkeb6R2Q8P2 "diagrama de implantação.png"
+          pdf 1-Q1amV0eMuU0Qe2gJlSKNgLmFEsMB_Sj "Diagrama de sequencia Gerenciar Serviços.png"
+          pdf 17wmrzNqX6fGN63zoBWdIgOds3vI_Eaaw "Diagrama de sequencia Orçamento.png"
+          pdf 1aOmNV1HlcaBM7ZINHIQXQlzRU2-FyOEI "Diagrama de estado Orçamento.png"
+          # remove o que não for imagem (ex.: página de login do Google)
+          for f in *.png; do file -b "$f" | grep -q PNG || { echo "INVALIDO: $f"; rm -f "$f"; }; done
+          ls -la
+      - name: Salvar no repositório
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add assets
+          git commit -m "Adiciona imagens do Drive em assets/" || echo "nada novo"
+          git push

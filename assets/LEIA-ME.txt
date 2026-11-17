@@ -1,0 +1,18 @@
+Coloque aqui os arquivos do Drive SEM RENOMEAR (o site procura pelo mesmo nome):
+
+Pasta "telas": Captura de Tela (1).png ... Captura de Tela (14).png
+Pasta "EstágioDocs":
+  Caso de uso.png
+  DER.png
+  diagrama de classe.png
+  diagrama de estado gerencia serviços.png
+  diagrama de implantação.png
+
+Exporte como PNG e salve com estes nomes (no Drive eles estão em PDF ou .bpm):
+  Diagrama de sequencia Gerenciar Serviços.png
+  Diagrama de sequencia Orçamento.png
+  Diagrama de estado Orçamento.png
+  Workflow AS-IS.png
+
+Se algum arquivo faltar, o site tenta a miniatura do Google Drive e, por último, mostra um botão "Abrir no Google Drive".
+Vídeo: cole o link (YouTube, Drive ou assets/video.mp4) na linha const VIDEO="" do index.html.
