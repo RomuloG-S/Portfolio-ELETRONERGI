@@ -3,8 +3,8 @@ Coloque aqui os arquivos do Drive SEM RENOMEAR (o site procura pelo mesmo nome):
 Pasta "telas": Captura de Tela (1).png ... Captura de Tela (14).png
 Pasta "EstágioDocs":
   Caso de uso.png
-  DER.png
-  diagrama de classe.png
+  DER.svg
+  diagrama de classe.svg
   diagrama de estado gerencia serviços.png
   diagrama de implantação.png
 

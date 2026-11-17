@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Instalar poppler
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils imagemagick
       - name: Baixar arquivos
         shell: bash
         run: |
@@ -20,7 +20,7 @@ jobs:
             echo "$2: $(file -b "$2" | cut -c1-40) ($(stat -c%s "$2") bytes)"
           }
           png() { baixar "$1" "$2"; }
-          pdf() { baixar "$1" tmp.pdf; pdftoppm -png -r 160 -singlefile tmp.pdf "${2%.png}" && rm tmp.pdf && echo "  -> $2"; }
+          pdf() { baixar "$1" tmp.pdf; rm -f pg-*.png; pdftoppm -png -r 160 tmp.pdf pg; convert pg-*.png -append -fuzz 4% -trim +repage -bordercolor white -border 40 "$2" && rm -f tmp.pdf pg-*.png && echo "  -> $2 $(identify -format '%wx%h' "$2")"; }
           png 1jkD6FJdjMPrmyMzyYaCIElZMgdg5MwFS "Captura de Tela (1).png"
           png 176OS7znHCEig6yBZrHBe4doWykIC7gti "Captura de Tela (2).png"
           png 1tTQ7unjGmiodeetkOZVKfh4UYSFCUVWd "Captura de Tela (3).png"
@@ -36,8 +36,8 @@ jobs:
           png 1rIkqCH3uh7g4-jW8eClUEsDziMchXfed "Captura de Tela (13).png"
           png 1WZMxlDROFPqI4VYDygHBhtCsIsXqx7xD "Captura de Tela (14).png"
           png 1iUtXdk0dxz1gLcOnC-G9HWpJVyjH3KIh "Caso de uso.png"
-          png 1G0MIM8mZoLQCNohOXdtZaCQIKUIxubXQ "DER.png"
-          png 1Z-Z4htWy-N7XXPcxspdgNTaYvXJUperl "diagrama de classe.png"
+          baixar 1G0MIM8mZoLQCNohOXdtZaCQIKUIxubXQ "DER.svg"
+          baixar 1Z-Z4htWy-N7XXPcxspdgNTaYvXJUperl "diagrama de classe.svg"
           png 1KvOoBjcDygvNDWiuIAt5oC6z7vtsKYPK "diagrama de estado gerencia serviços.png"
           png 120gMyp_5YNJ8ChsTP1W6bJkeb6R2Q8P2 "diagrama de implantação.png"
           pdf 1-Q1amV0eMuU0Qe2gJlSKNgLmFEsMB_Sj "Diagrama de sequencia Gerenciar Serviços.png"
