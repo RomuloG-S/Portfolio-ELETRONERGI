@@ -1,4 +1,4 @@
-name: Baixar imagens do Drive
+name: Baixar imagens e documentos do Drive
 on:
   workflow_dispatch:
 permissions:
@@ -45,11 +45,21 @@ jobs:
           pdf 1aOmNV1HlcaBM7ZINHIQXQlzRU2-FyOEI "Diagrama de estado Orçamento.png"
           # remove o que não for imagem (ex.: página de login do Google)
           for f in *.png; do file -b "$f" | grep -q PNG || { echo "INVALIDO: $f"; rm -f "$f"; }; done
-          ls -la
+          # documentos em PDF (pasta docs/)
+          mkdir -p ../docs
+          doc() { curl -sSL -o "../docs/$2" "https://drive.usercontent.google.com/download?id=$1&export=download&confirm=t"; echo "docs/$2: $(file -b "../docs/$2" | cut -c1-30)"; file -b "../docs/$2" | grep -q PDF || { echo "INVALIDO: $2"; rm -f "../docs/$2"; }; }
+          doc 1FeaajWuGcFVLUy5HAOHmNHZoJAsvY8Fv Relatorio-Estagio-ELETRONERGI.pdf
+          doc 1fxp1VXqo2hoxBuTMsVNXHBwHVCdrJlQB Documento-de-Visao.pdf
+          doc 1SWYfjoWRxMsq0e95zAX_yPMzvuU9bFVo Especificacao-Suplementar.pdf
+          doc 1JITrXJrXHhX71oAD3POV5o6j8GXArD8Z Pedidos-do-Investidor.pdf
+          doc 1LrCKfSij3ENZyHZrudUP6EPuAMJeKjHP Glossario.pdf
+          doc 1QpUQv9sHqAlb-h8PlFV1sGwVdXBPoWo3 Especificacao-UC-Solicitar-Orcamento.pdf
+          doc 1yEUDEj-3WunJUq9V461s-yoSAjezL1AK Especificacao-UC-Gerenciar-Servicos.pdf
+          ls -la . ../docs
       - name: Salvar no repositório
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add assets
-          git commit -m "Adiciona imagens do Drive em assets/" || echo "nada novo"
+          git add assets docs
+          git commit -m "Atualiza imagens e documentos do Drive" || echo "nada novo"
           git push

@@ -14,5 +14,5 @@ Exporte como PNG e salve com estes nomes (no Drive eles estão em PDF ou .bpm):
   Diagrama de estado Orçamento.png
   Workflow AS-IS.png
 
-Se algum arquivo faltar, o site tenta a miniatura do Google Drive e, por último, mostra um botão "Abrir no Google Drive".
-Vídeo: cole o link (YouTube, Drive ou assets/video.mp4) na linha const VIDEO="" do index.html.
+Se algum arquivo faltar, o diagrama correspondente simplesmente não aparece no site.
+Vídeo: cole o link (YouTube ou assets/video.mp4) na linha const VIDEO="" do index.html.

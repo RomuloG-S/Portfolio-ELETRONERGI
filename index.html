@@ -123,6 +123,16 @@ figcaption b{color:var(--ink)}
 .stamp b{font-size:17px}
 .stamp .last{border-bottom:0}
 @media(max-width:700px){.stamp{grid-template-columns:minmax(0,1fr)}.stamp div,.stamp .w2{grid-column:auto;border-right:0}.stamp .last{border-bottom:1px solid var(--ink)}.stamp div:last-child{border-bottom:0}}
+.zoom{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,10,13,.92);display:grid;place-items:center;padding:56px 64px 24px}
+.lb[hidden]{display:none}
+.lb figure{background:transparent;border:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;overflow:auto}
+.lb img{max-width:min(1400px,100%);max-height:calc(100vh - 130px);object-fit:contain;background:#fff;border-radius:4px}
+.lb figcaption{color:#dfe3e7;text-align:center;padding:10px 0 0}
+.lb figcaption b{color:#fff}
+.lb button{position:absolute;width:46px;height:46px;border-radius:50%;border:1.5px solid #f0a674;background:#1c2026;color:#f0a674;font-size:22px;cursor:pointer}
+.lbx{top:12px;right:14px}.lbp{left:10px;top:50%}.lbnx{right:10px;top:50%}
+@media(max-width:600px){.lb{padding:60px 8px 16px}.lbp,.lbnx{top:auto;bottom:14px}.lbp{left:calc(50% - 56px)}.lbnx{right:calc(50% - 56px)}.lb img{max-height:calc(100vh - 190px)}}
 footer{color:var(--mute);font-size:14px;text-align:center;padding:26px 16px 40px}
 .scroll{overflow-x:auto}
 @media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 12px;padding-inline-start:8.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-size:13px}.stack td:empty{display:none}}
@@ -212,11 +222,11 @@ footer{color:var(--mute);font-size:14px;text-align:center;padding:26px 16px 40px
 <!-- 4. DOCUMENTAÇÃO / DIAGRAMAS -->
 <section class="band sheet" id="documentacao"><div class="wrap">
 <div class="sheet-head"><span class="no">Folha 04</span><h2>Documentação — diagramas</h2></div>
-<p class="sub">Clique em qualquer diagrama para abrir o arquivo original no Google Drive.</p>
+<p class="sub">Clique em qualquer diagrama para ampliar.</p>
 <div id="dgs"></div>
 <h3 style="margin:40px 0 12px">Documentos do projeto (RUP)</h3>
 <div class="doclist" id="docL"></div>
-<p style="margin-top:20px"><a class="btn ghost" href="https://drive.google.com/drive/folders/1oo7pDeegu0maqyCtOFz3G7qmd26Jsl68" target="_blank" rel="noopener">Abrir a pasta completa do projeto no Drive</a></p>
+
 </div></section>
 
 <!-- 5. TELAS -->
@@ -249,8 +259,8 @@ footer{color:var(--mute);font-size:14px;text-align:center;padding:26px 16px 40px
 <div class="report">
 <div class="paper"><div class="t">CURSO DE BACHARELADO EM ENGENHARIA DE SOFTWARE</div><div class="n">Relatório de Estágio — ELETRONERGI</div><div class="t">Rômulo Gusso Sobrinho<br>Londrina, 2026</div><hr><div class="t">PDF · versão atualizada</div></div>
 <div><p>O relatório reúne a introdução e a justificativa do projeto, todos os diagramas (caso de uso, ER, classes, sequência, estado e implantação), as telas desenvolvidas, o workflow AS-IS em BPMN, os recursos e o ambiente de desenvolvimento e o cronograma de entregas.</p>
-<p><a class="btn" href="https://drive.google.com/file/d/1FeaajWuGcFVLUy5HAOHmNHZoJAsvY8Fv/view" target="_blank" rel="noopener">Abrir o Relatório de Estágio (PDF)</a></p>
-<p style="color:var(--mute);margin-top:14px">Acompanhamento mensal (RPOD): <a href="https://drive.google.com/file/d/16YI8gS1lSONCZpws-xosR2zc8x_PO9Kc/view" target="_blank" rel="noopener">junho</a> · <a href="https://drive.google.com/file/d/1Sx6UfSF5C3iC2aqx1CDzleLE1p_N-Za3/view" target="_blank" rel="noopener">julho</a> · <a href="https://drive.google.com/file/d/1SWdSni2rVXjuFpQ6h5L58yz7gfqGeonY/view" target="_blank" rel="noopener">outubro</a> · <a href="https://drive.google.com/file/d/1v4N8FeIhFb93GdwHvsz-1WF8nq41TMHo/view" target="_blank" rel="noopener">novembro</a></p></div>
+<p><a class="btn" href="docs/Relatorio-Estagio-ELETRONERGI.pdf" target="_blank" rel="noopener">Abrir o Relatório de Estágio (PDF)</a></p>
+</div>
 </div>
 </div></section>
 
@@ -270,23 +280,22 @@ footer{color:var(--mute);font-size:14px;text-align:center;padding:26px 16px 40px
 </div>
 </div></section>
 
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagem ampliada"><button type="button" class="lbx" id="lbx" aria-label="Fechar">&times;</button><button type="button" class="lbn lbp" id="lbp" aria-label="Anterior">&#10094;</button><figure><img id="lbi" alt=""><figcaption id="lbc"></figcaption></figure><button type="button" class="lbn lbnx" id="lbn" aria-label="Próxima">&#10095;</button></div>
 <footer>Portfólio do Projeto de Estágio · ELETRONERGI · Rômulo Gusso Sobrinho · 2026</footer>
 
 <script>
 {
 /* ===== CONFIGURAÇÃO ===== */
-/* Link do vídeo: YouTube (watch, youtu.be ou shorts), Google Drive (/file/d/.../view) ou "assets/video.mp4" */
+/* Link do vídeo: YouTube (watch, youtu.be ou shorts) ou "assets/video.mp4" */
 const VIDEO="";
 
-const D=id=>`https://drive.google.com/file/d/${id}/view`;
-/* Cada imagem tenta: 1) arquivo em assets/ (mesmo nome do Drive)  2) miniatura do Drive  3) cartão com link para o Drive */
-const srcs=(local,id)=>[`assets/${encodeURIComponent(local)}`,`https://drive.google.com/thumbnail?id=${id}&sz=w2000`,`https://lh3.googleusercontent.com/d/${id}=w2000`];
-const fig=(local,id,alt,cap)=>`<figure><a class="img" href="${D(id)}" target="_blank" rel="noopener"><img alt="${alt}" data-s='${JSON.stringify(srcs(local,id))}'><span class="fb"><span>Abrir no Google Drive</span></span></a>${cap?`<figcaption>${cap}</figcaption>`:''}</figure>`;
-function wire(root){root.querySelectorAll('img[data-s]').forEach(im=>{const l=JSON.parse(im.dataset.s);let i=0;im.removeAttribute('data-s');im.loading='lazy';im.onerror=()=>{i++;if(i<l.length)im.src=l[i];else im.closest('figure').classList.add('broken')};im.src=l[0]})}
+const A=n=>`assets/${encodeURIComponent(n)}`;
+const fig=(local,id,alt,cap)=>`<figure><a class="img zoom" href="${A(local)}" data-cap="${(cap||alt).replace(/"/g,'&quot;')}"><img alt="${alt}" loading="lazy" src="${A(local)}" onerror="this.closest('.dg')?this.closest('.dg').remove():this.closest('figure').classList.add('broken')"><span class="fb"><span>Imagem indisponível</span></span></a>${cap?`<figcaption>${cap}</figcaption>`:''}</figure>`;
+function wire(){}
 
 /* ===== CASOS DE USO ===== */
 const UC_ID="1iUtXdk0dxz1gLcOnC-G9HWpJVyjH3KIh";
-document.getElementById('dg-uc').innerHTML=`<div class="dg-h"><span class="n">3.1</span><h3>Diagrama de Casos de Uso</h3><a href="${D(UC_ID)}" target="_blank" rel="noopener">Abrir no Drive ↗</a></div>`+fig("Caso de uso.png",UC_ID,'Diagrama de casos de uso','<b>Figura 1</b> — Atores Cliente e Gestor e os casos de uso do sistema.');
+document.getElementById('dg-uc').innerHTML=`<div class="dg-h"><span class="n">3.1</span><h3>Diagrama de Casos de Uso</h3></div>`+fig("Caso de uso.png",UC_ID,'Diagrama de casos de uso','<b>Figura 1</b> — Atores Cliente e Gestor e os casos de uso do sistema.');
 const ucs=[
 ["Solicitar orçamento","Cliente","Registra uma nova solicitação de orçamento: dados de contato, cidade, tipo de serviço, descrição do projeto e anexo opcional (PDF, JPG ou PNG até 10 MB)."],
 ["Acompanhar orçamento","Cliente","Permite ao cliente consultar o andamento (Em análise, Aceito, Recusado) do orçamento ligado à sua solicitação."],
@@ -331,16 +340,16 @@ const dgs=[
  [["diagrama de implantação.png","120gMyp_5YNJ8ChsTP1W6bJkeb6R2Q8P2","Diagrama de implantação",""]]],
 ["4.6","Workflow AS-IS (BPMN)","Processo de atendimento antes do sistema: pedido do cliente, registro, análise, visita técnica quando necessária, envio da proposta, execução e pagamento.",
  [["Workflow AS-IS.png","1tPDLaEhLCkVeoFOaLznV73FBZ2TUo0cz","Workflow AS-IS em BPMN",""]]]];
-document.getElementById('dgs').innerHTML=dgs.map(d=>`<div class="dg"><div class="dg-h"><span class="n">${d[0]}</span><h3>${d[1]}</h3>${d[3].length==1?`<a href="${D(d[3][0][1])}" target="_blank" rel="noopener">Abrir no Drive ↗</a>`:''}</div><p>${d[2]}</p><div class="${d[3].length>1?'pair':''}">${d[3].map(f=>fig(...f)).join('')}</div></div>`).join('');
+document.getElementById('dgs').innerHTML=dgs.map(d=>`<div class="dg"><div class="dg-h"><span class="n">${d[0]}</span><h3>${d[1]}</h3></div><p>${d[2]}</p><div class="${d[3].length>1?'pair':''}">${d[3].map(f=>fig(...f)).join('')}</div></div>`).join('');
 
-const card=(ab,t,s,id)=>`<a class="doc" href="${D(id)}" target="_blank" rel="noopener"><span class="ic">${ab}</span><span><b>${t}</b><small>${s}</small></span></a>`;
+const card=(ab,t,s,f)=>`<a class="doc" href="docs/${f}" target="_blank" rel="noopener"><span class="ic">${ab}</span><span><b>${t}</b><small>${s}</small></span></a>`;
 const rup=[
-["VI","Documento de Visão","Problema, envolvidos e necessidades","1fxp1VXqo2hoxBuTMsVNXHBwHVCdrJlQB"],
-["ES","Especificação Suplementar","Requisitos não funcionais","1SWYfjoWRxMsq0e95zAX_yPMzvuU9bFVo"],
-["PI","Pedidos do Investidor","Levantamento com o cliente","1JITrXJrXHhX71oAD3POV5o6j8GXArD8Z"],
-["GL","Glossário","Termos e estereótipos UML","1LrCKfSij3ENZyHZrudUP6EPuAMJeKjHP"],
-["UC","Especificação — Solicitar Orçamento","Fluxo básico, alternativos e subfluxos","1QpUQv9sHqAlb-h8PlFV1sGwVdXBPoWo3"],
-["UC","Especificação — Gerenciar Serviços","Fluxo básico, alternativos e subfluxos","1yEUDEj-3WunJUq9V461s-yoSAjezL1AK"]];
+["VI","Documento de Visão","Problema, envolvidos e necessidades","Documento-de-Visao.pdf"],
+["ES","Especificação Suplementar","Requisitos não funcionais","Especificacao-Suplementar.pdf"],
+["PI","Pedidos do Investidor","Levantamento com o cliente","Pedidos-do-Investidor.pdf"],
+["GL","Glossário","Termos e estereótipos UML","Glossario.pdf"],
+["UC","Especificação — Solicitar Orçamento","Fluxo básico, alternativos e subfluxos","Especificacao-UC-Solicitar-Orcamento.pdf"],
+["UC","Especificação — Gerenciar Serviços","Fluxo básico, alternativos e subfluxos","Especificacao-UC-Gerenciar-Servicos.pdf"]];
 document.getElementById('docL').innerHTML=rup.map(d=>card(...d)).join('');
 
 /* ===== TELAS (carrossel) ===== */
@@ -373,13 +382,24 @@ let tm;tr.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{con
 mark();
 wire(document);
 
+/* ===== AMPLIAR IMAGEM ===== */
+const lb=document.getElementById('lb'),lbi=document.getElementById('lbi'),lbc=document.getElementById('lbc');let zs=[],zi=0,last=null;
+const show=i=>{zi=(i+zs.length)%zs.length;const a=zs[zi];lbi.src=a.getAttribute('href');lbi.alt=a.querySelector('img').alt;lbc.innerHTML=a.dataset.cap};
+const close=()=>{lb.hidden=true;lbi.src='';document.body.style.overflow='';last&&last.focus()};
+document.addEventListener('click',e=>{const a=e.target.closest('a.zoom');if(!a)return;e.preventDefault();if(a.closest('figure').classList.contains('broken'))return;
+ const grp=a.closest('.track')||document.getElementById('documentacao').contains(a)&&document.getElementById('documentacao')||a.closest('section');
+ zs=[...grp.querySelectorAll('a.zoom')].filter(x=>!x.closest('figure').classList.contains('broken'));last=a;show(zs.indexOf(a));lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbx').focus()});
+document.getElementById('lbx').addEventListener('click',close);
+document.getElementById('lbp').addEventListener('click',()=>show(zi-1));
+document.getElementById('lbn').addEventListener('click',()=>show(zi+1));
+lb.addEventListener('click',e=>{if(e.target===lb)close()});
+document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(zi+1);if(e.key==='ArrowLeft')show(zi-1)});
+
 /* ===== VÍDEO ===== */
 if(VIDEO){
  const vb=document.getElementById('vbox');let html='';
  const yt=VIDEO.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
- const dv=VIDEO.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
  if(yt)html=`<iframe src="https://www.youtube.com/embed/${yt[1]}" title="Vídeo de demonstração" allowfullscreen></iframe>`;
- else if(dv)html=`<iframe src="https://drive.google.com/file/d/${dv[1]}/preview" title="Vídeo de demonstração" allow="autoplay" allowfullscreen></iframe>`;
  else html=`<video controls preload="metadata" src="${VIDEO}">Seu navegador não suporta vídeo.</video>`;
  vb.innerHTML=html;document.getElementById('vbtn').href=VIDEO;
 }else{document.getElementById('vbtn').style.display='none'}
